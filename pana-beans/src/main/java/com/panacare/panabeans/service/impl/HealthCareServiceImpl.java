@@ -33,6 +33,7 @@ public class HealthCareServiceImpl implements HealthCareService {
     private final HealthCareRepository healthCareRepository;
 
 
+    @Transactional
     @Override
     public Page<HealthCareDto> getHealthCareFacilities(HealthCareCategories category, Pageable pageable) {
         Page<HealthCareEntity> healthCareEntities;

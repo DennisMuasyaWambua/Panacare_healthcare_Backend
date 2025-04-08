@@ -22,7 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class OnboardingWorkflowServiceImpl implements OnboardingWorkflowService {
 
-    private final WorkflowClient workflowClient;
+//    private final WorkflowClient workflowClient;
     private final UserRepository userRepo;
     private final DoctorRepository doctorRepository;
     private final keycloakProvider keycloakProvider; // Injected keycloak Provider
@@ -44,9 +44,9 @@ public class OnboardingWorkflowServiceImpl implements OnboardingWorkflowService 
         userResource.update(user);
 
         System.out.println("User " + workflowId + " has been approved and activated.");
-        OnboardingWorkFlow onboardingWorkFlow = workflowClient
-                .newWorkflowStub(OnboardingWorkFlow.class, workflowId);
-        onboardingWorkFlow.signalCompleteOnBoarding();
+//        OnboardingWorkFlow onboardingWorkFlow = workflowClient
+//                .newWorkflowStub(OnboardingWorkFlow.class, workflowId);
+//        onboardingWorkFlow.signalCompleteOnBoarding();
     }
 
     @Override
@@ -66,7 +66,7 @@ public class OnboardingWorkflowServiceImpl implements OnboardingWorkflowService 
 
     @Override
     public String getStatus(String workflowId) {
-        OnboardingWorkFlow workflow = workflowClient.newWorkflowStub(OnboardingWorkFlow.class, workflowId);
-        return workflow.getStatus();
+//        OnboardingWorkFlow workflow = workflowClient.newWorkflowStub(OnboardingWorkFlow.class, workflowId);
+        return "workflow.getStatus()";
     }
 }

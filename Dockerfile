@@ -40,7 +40,7 @@ COPY pana-front-end/target/pana-front-end-0.0.1.jar .
 EXPOSE 8080
 
 # Set keycloak and Temporal environment variables
-ENV KC_URL=http://keycloak:8080
+ENV KC_URL=https://keycloak-production-2aa3.up.railway.app
 #ENV TEMPORAL_URL=http://temporal:7233
 
 # Run the application

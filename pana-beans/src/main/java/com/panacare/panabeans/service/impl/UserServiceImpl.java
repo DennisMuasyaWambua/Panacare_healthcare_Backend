@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
     private final CustomEmailService customEmailService;
     private final EmailService emailService2;
 
-    private final WorkflowUtilities workflowUtilities;
+//    private final WorkflowUtilities workflowUtilities;
 
     @Override
     public void startOnboardingWorkflow(UserDto user) {
@@ -83,14 +83,20 @@ public class UserServiceImpl implements UserService {
         userEntity.setRoles(new HashSet<>());
         userRepo.save(userEntity);
         //todo send activation email to the user with the user id
-        String activationUrl = frontEndBaseUrl + "/api/v1/user/onboard/" + userId;
         String subject = "Account Activation";
-        String body = "Hello,<br><br>"
-                + "Click <a href=\"" + activationUrl + "\">here</a> to activate your account.<br><br>";
+        String activationUrl = "https://" + frontEndBaseUrl + "/api/v1/user/onboard/" + userId;
+
+        String body = "<html><body>"
+                + "Hello,<br><br>"
+                + "Click <a href=\"" + activationUrl + "\">here</a> to activate your account.<br><br>"
+                + "If the link doesn't work, copy and paste the following URL into your browser:<br>"
+                + "<a href=\"" + activationUrl + "\">" + activationUrl + "</a><br><br>"
+                + "</body></html>";
+
         customEmailService.sendEmail(user.getEmail(), subject, body, true); // 'true' indicates HTML content
 
-        OnboardingWorkFlow workFlow = workflowUtilities.createOnboardingWorkflowConnection(userId);
-        WorkflowClient.start(workFlow::startUserOnboarding, user);
+//        OnboardingWorkFlow workFlow = workflowUtilities.createOnboardingWorkflowConnection(userId);
+//        WorkflowClient.start(workFlow::startUserOnboarding, user);
     }
 
     @Override

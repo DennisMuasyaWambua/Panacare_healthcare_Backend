@@ -31,7 +31,7 @@ public class HealthCareEntity extends StandardEntity {
     private String county;
     private String workingHours;
     private HealthCareCategories category;
-    @OneToMany(mappedBy = "healthCare", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference // Prevent infinite recursion during serialization
+    @OneToMany(mappedBy = "healthCare", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JsonManagedReference
     private Set<DoctorEntity> doctors;
 }
